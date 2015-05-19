@@ -5,7 +5,7 @@
 
 var zipcode = process.argv.slice(2);
 var https = require("https");
-var ZipAPI_KEY = "Wfaz2r4dFnwtPyftSjF0v6V7HjtbOEwLUGkX8obOLIhBgx58QK9lR5tzpWKdBgZw";
+var ZipAPI_KEY = "UidXD5XnSIIdnYhuo1EXiUBWzwyKWF1RXfOBkLZduHqSGIn4J122VDYu9xf6cgYa";
 var DarkSkyAPI_KEY = "a3abc3e4932e3982c14456476799d45f"
 
 function getLatLong(zipcode){
@@ -34,15 +34,15 @@ function getLatLong(zipcode){
 
       var requestForecast = https.get("https://api.forecast.io/forecast/" + DarkSkyAPI_KEY + "/" + latitude + "," + longitude , function(response){
         
-        var body = "";
+        var result = "";
 
         response.on("data", function(chunk){
-          body += chunk;
+          result += chunk;
         });
 
         response.on("end", function(){
 
-          var fullForecast = JSON.parse(body);
+          var fullForecast = JSON.parse(result);
           var hourlyForecast = fullForecast.hourly.summary;
           var dailyForecast = fullForecast.daily.summary;
 
